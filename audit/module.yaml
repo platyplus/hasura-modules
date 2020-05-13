@@ -1,0 +1,2 @@
+description: A simple, customisable table audit system for PostgreSQL implemented using triggers.
+repo: https://github.com/hasura/audit-trigger
