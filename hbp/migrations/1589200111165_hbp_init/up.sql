@@ -58,13 +58,16 @@ CREATE TABLE auth.refresh_tokens (
 CREATE TABLE auth.roles (
     role text NOT NULL
 );
-CREATE TABLE public.users (
+
+CREATE TABLE IF NOT EXISTS public.users ();
+
+ALTER TABLE public.users ADD COLUMN IF NOT EXISTS
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL,
     display_name text,
-    avatar_url text
-);
+    avatar_url text;
+
 ALTER TABLE ONLY auth.account_providers
     ADD CONSTRAINT account_providers_account_id_auth_provider_key UNIQUE (account_id, auth_provider);
 ALTER TABLE ONLY auth.account_providers
@@ -89,7 +92,7 @@ ALTER TABLE ONLY auth.roles
     ADD CONSTRAINT roles_pkey PRIMARY KEY (role);
 ALTER TABLE ONLY auth.account_roles
     ADD CONSTRAINT user_roles_account_id_role_key UNIQUE (account_id, role);
-ALTER TABLE ONLY public.users
+ALTER TABLE ONLY public.users IF NOT EXISTS
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 CREATE TRIGGER set_auth_account_providers_updated_at BEFORE UPDATE ON auth.account_providers FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
 CREATE TRIGGER set_auth_accounts_updated_at BEFORE UPDATE ON auth.accounts FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
