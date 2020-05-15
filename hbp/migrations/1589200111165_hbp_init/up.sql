@@ -61,12 +61,12 @@ CREATE TABLE auth.roles (
 
 CREATE TABLE IF NOT EXISTS public.users ();
 
-ALTER TABLE public.users ADD COLUMN IF NOT EXISTS
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    created_at timestamp with time zone DEFAULT now() NOT NULL,
-    updated_at timestamp with time zone DEFAULT now() NOT NULL,
-    display_name text,
-    avatar_url text;
+ALTER TABLE public.users
+	ADD COLUMN IF NOT exists id uuid DEFAULT public.gen_random_uuid() NOT null,
+    ADD COLUMN IF NOT exists created_at timestamp with time zone DEFAULT now() NOT NULL,
+    ADD COLUMN IF NOT exists updated_at timestamp with time zone DEFAULT now() NOT NULL,
+    ADD COLUMN IF NOT exists display_name text,
+    ADD COLUMN IF NOT exists avatar_url text;
 
 ALTER TABLE ONLY auth.account_providers
     ADD CONSTRAINT account_providers_account_id_auth_provider_key UNIQUE (account_id, auth_provider);
