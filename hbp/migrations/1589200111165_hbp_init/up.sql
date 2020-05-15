@@ -92,8 +92,9 @@ ALTER TABLE ONLY auth.roles
     ADD CONSTRAINT roles_pkey PRIMARY KEY (role);
 ALTER TABLE ONLY auth.account_roles
     ADD CONSTRAINT user_roles_account_id_role_key UNIQUE (account_id, role);
-ALTER TABLE ONLY public.users IF NOT EXISTS
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+ALTER TABLE public.users DROP CONSTRAINT IF EXISTS users_pkey;
+ALTER TABLE ONLY public.users 
+	ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 CREATE TRIGGER set_auth_account_providers_updated_at BEFORE UPDATE ON auth.account_providers FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
 CREATE TRIGGER set_auth_accounts_updated_at BEFORE UPDATE ON auth.accounts FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
 CREATE TRIGGER set_public_users_updated_at BEFORE UPDATE ON public.users FOR EACH ROW EXECUTE FUNCTION public.set_current_timestamp_updated_at();
