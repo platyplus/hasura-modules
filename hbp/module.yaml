@@ -1,12 +1,12 @@
 description: Hasura Backend Plus (HBP), Authentication and Storage for Hasura.
 repo: https://github.com/nhost/hasura-backend-plus
-instructions:
-  install: |
+install:
+  pre: |
     This will install an auth schema, a public.users table as well as all the related Hasura metadata.
     Please check that no auth schema already exists.
     If a public.users table already exists, it will update it, create the required columns (id, created_at, updated_at, display_name, avatar), and use id as a primarey key.
-  uninstall: |
-    Uninstalling the Hasura Backend Plus will fully remove the auth schema, but will keep the public.users table intact.
-  post-install: |
+  post: |
     You must now install and configure the Hasura Backend Plus service.
     More information on https://nhost.github.io/hasura-backend-plus/
+uninstall:
+  pre: Uninstalling the Hasura Backend Plus will fully remove the auth schema, but will keep the public.users table intact.
