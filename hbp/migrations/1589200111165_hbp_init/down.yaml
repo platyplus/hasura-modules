@@ -83,6 +83,7 @@
       schema: public
   type: drop_relationship
 - args:
-    name: users
-    schema: public
+    table:
+      name: users
+      schema: public
   type: untrack_table
