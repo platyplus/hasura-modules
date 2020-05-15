@@ -1,2 +1,12 @@
 description: A simple, customisable table audit system for PostgreSQL implemented using triggers.
 repo: https://github.com/hasura/audit-trigger
+install:
+    pre: |
+      This will install an audit schema, its logged_actions table, and its functions to enable audit trail on given tables.
+      Please check that no audit schema already exists.
+    post: |
+      You can now add an audit trail to any table you like.
+      More information on https://github.com/hasura/audit-trigger
+  uninstall:
+    pre: Uninstalling the Audit Trail module will fully remove the audit schema, including its data.
+  
