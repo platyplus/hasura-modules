@@ -85,4 +85,4 @@
 - args:
     name: users
     schema: public
-  type: drop_existing_table_or_view
+  type: untrack_table
