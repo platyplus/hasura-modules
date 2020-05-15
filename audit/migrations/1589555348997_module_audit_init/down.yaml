@@ -1,0 +1,5 @@
+- args:
+    table:
+      name: logged_actions
+      schema: audit
+  type: untrack_table

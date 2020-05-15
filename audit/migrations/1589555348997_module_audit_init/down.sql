@@ -1,0 +1,1 @@
+drop SCHEMA audit cascade;

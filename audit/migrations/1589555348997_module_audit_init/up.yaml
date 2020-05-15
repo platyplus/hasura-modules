@@ -1,0 +1,4 @@
+- args:
+    name: logged_actions
+    schema: audit
+  type: add_existing_table_or_view
